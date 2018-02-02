@@ -6,13 +6,12 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux'
 import fetchData from './components/reducers';
+import Root from './Root';
 
 let store = createStore(fetchData);
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>
+    <Root store={store}></Root>
     , document.getElementById('root'));
 
 registerServiceWorker();

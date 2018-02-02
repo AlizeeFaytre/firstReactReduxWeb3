@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FilterLink from './FilterLink';
 import { Menu } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-redux';
 import {
     requestBlocknumber,
     requestCoinnumber,
@@ -14,6 +14,7 @@ import {
 
 const Header = ({ state, requestBlocknumber, requestCoinnumber }) => {
     const onClick = (e) => {
+        console.log(e.target.id);
         if (e.target.id == 0) {
             console.log("requestCoinnumber j'ai été cliqué");
             return requestCoinnumber();
@@ -27,13 +28,19 @@ const Header = ({ state, requestBlocknumber, requestCoinnumber }) => {
     return (
         <Menu inverted={true} defaultActiveIndex={0} className="segment" >
             <Menu.Header className="inverted">
-                <strong>My First Blockchain</strong>
+                <FilterLink filter="/">
+                    <strong>My First Blockchain</strong>
+                </FilterLink>
             </Menu.Header>
             <Menu.Item as="div" className="link" id={0} index={0} onClick={onClick}>
-                Number of coin for reward
+                <FilterLink id={0} filter="/NbCoin">
+                    Number of coin for reward
+                </FilterLink>
             </Menu.Item>
             <Menu.Item as="div" className="link" id={1} index={1} onClick={onClick}>
-                Number of blocks
+                <FilterLink id={1} filter="/NbBlock">
+                    <p id={1}>Number of blocks</p>
+                </FilterLink>
             </Menu.Item>
         </Menu>
     );
